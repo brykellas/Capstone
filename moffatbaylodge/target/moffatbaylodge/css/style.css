@@ -1,0 +1,108 @@
+body {
+    background-color: #ffffff;
+}
+
+header img {
+    width: 100%;
+    height: auto;
+ }
+  
+.header-text {
+    text-align: right;
+    color: white;
+    font-family: 'Gloock', serif;
+    font-size: 3vw;
+    top: 25%;
+    left: 65%;
+    position: absolute;
+}
+
+.container {
+    background-color: #c2c2c2;
+    width: 80%;
+    margin: 0 auto;
+}  
+
+#navbar {
+    background-color: #000000;
+    padding: 20px;
+}
+
+#navbar a {
+    text-align: left;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1vw;
+}
+
+#navbar a:hover {
+    background-color: #FFB287;
+    color: #000000;
+}
+
+.account {
+    float: right;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+h1 {
+    font-family: 'Gloock', serif;
+}
+
+.forms {
+    text-align: center;
+    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1vw;
+    padding: 50px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 30%;
+    margin: 10% 35%;
+}
+
+.forms ::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+footer {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1vw;
+    color: #000000;
+    background-color: #FFB287;
+}
+
+#flinks {
+    text-align: center;
+}
+
+#flinks a {
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1vw;
+    text-decoration: none;
+}
+
+#logo {
+    text-align: left;
+}
+
+#logo img {
+    height: 100px;
+}
+
+#socials {
+    text-align: right;
+}
+
+#socials img {
+    height: 30px;
+    float
+}
