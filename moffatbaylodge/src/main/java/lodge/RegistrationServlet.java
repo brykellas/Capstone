@@ -1,7 +1,7 @@
 /* Team Delta
  * Authors: Bryce Kellas
  * 
- * Servlet controller to handle registration requests
+ * Servlet controller to handle registration requests and validations.
  * Adapted from: Beginning Jakarta EE Web Development, Third Edition - 2020 - Authors: Luciano Manelli, Giulio Zambon
  *      Accessed 9/2/2023
  * 
@@ -25,7 +25,7 @@ import lodge.beans.Customer;
 import lodge.models.DataManager;
 
 
-@WebServlet(name = "RegistrationServlet", urlPatterns = {"/lodge/register/*"})
+@WebServlet(name = "RegistrationServlet", urlPatterns = {"/register/*"})
 public class RegistrationServlet extends jakarta.servlet.http.HttpServlet {
     
     
@@ -37,31 +37,11 @@ public class RegistrationServlet extends jakarta.servlet.http.HttpServlet {
         System.out.println("*** initializing registration servlet.");
         super.init(config);
 
-        /* 
-        System.out.println("*** initializing controller servlet.");
-        super.init(config);
-
-        DataManager dataManager = new DataManager();
-        dataManager.setDbURL(config.getInitParameter("dbURL"));
-        dataManager.setDbUserName(config.getInitParameter("dbUserName"));
-        dataManager.setDbPassword(config.getInitParameter("dbPassword"));
-
-        ServletContext context = config.getServletContext();
-        context.setAttribute("base", config.getInitParameter("base"));
-        context.setAttribute("imageURL", config.getInitParameter("imageURL"));
-        context.setAttribute("dataManager", dataManager);
-
-        try {  // load the database JDBC driver
-            Class.forName(config.getInitParameter("jdbcDriver"));
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println(e.toString());
-        }
-        */
+        
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        //doPost(request, response);
         
     }
 
@@ -72,7 +52,6 @@ public class RegistrationServlet extends jakarta.servlet.http.HttpServlet {
         DataManager dm = (DataManager)getServletContext().getAttribute("dataManager");
         HashPassword hp = new HashPassword();
 
-        
         Customer customer = new Customer(); 
         customer.setFirstName(request.getParameter("firstname"));
         customer.setLastName(request.getParameter("lastname"));

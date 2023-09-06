@@ -21,7 +21,7 @@
     <body>
 
         <div class="container">
-            <%@ include file = "views/header.jsp" %>
+            <%@ include file = "header.jsp" %>
 
             <div class="forms">
                 <h1>Registration</h1>
@@ -40,12 +40,7 @@
                 if(caseInvalid != null)
                     out.println("<font color=red size=4px>"+caseInvalid+"</font>");
                 %>
-                <input
-                    type="text"
-                    name="firstname"
-                    placeholder="First Name"
-                    required
-                />
+                <input type="text" name="firstname" placeholder="First Name" required />
                 <br /><br />
                 <input type="text" name="lastname" placeholder="Last Name" required />
                 <br /><br />
@@ -59,7 +54,7 @@
                 </form>
             </div>
 
-            <%@ include file = "views/header.jsp" %>
+            <%@ include file = "footer.jsp" %>
         </div>
     </body>
     </html>

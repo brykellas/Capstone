@@ -39,7 +39,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>RegistrationServlet</servlet-name>
-		<servlet-class>lodge.RegitrationServlet</servlet-class>
+		<servlet-class>lodge.RegistrationServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>

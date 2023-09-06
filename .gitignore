@@ -10,9 +10,6 @@ local.properties
 .loadpath
 .recommenders
 
-# Maven build folders
-target/
-
 # External tool builders
 .externalToolBuilders/
 

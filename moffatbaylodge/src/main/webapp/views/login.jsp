@@ -25,6 +25,9 @@
                 String loginMessage = (String)request.getAttribute("loginerror");  
                 if(loginMessage != null)
                 out.println("<font color=red size=4px>" + loginMessage + "</font>");
+                String registerMessage = (String)request.getAttribute("registerwelcome");  
+                if(registerMessage != null)
+                out.println("<font color=black size=3px>" + registerMessage + "</font>");
                 %>
             
                 <h1>Log In</h1>

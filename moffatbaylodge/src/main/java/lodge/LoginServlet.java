@@ -37,24 +37,7 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
         System.out.println("*** initializing login servlet.");
         super.init(config);
 
-        /*
-        DataManager dataManager = new DataManager();
-        dataManager.setDbURL(config.getInitParameter("dbURL"));
-        dataManager.setDbUserName(config.getInitParameter("dbUserName"));
-        dataManager.setDbPassword(config.getInitParameter("dbPassword"));
-
-        ServletContext context = config.getServletContext();
-        context.setAttribute("base", config.getInitParameter("base"));
-        context.setAttribute("imageURL", config.getInitParameter("imageURL"));
-        context.setAttribute("dataManager", dataManager);
-
-        try {  // load the database JDBC driver
-            Class.forName(config.getInitParameter("jdbcDriver"));
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println(e.toString());
-        }
-        */
+        
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
