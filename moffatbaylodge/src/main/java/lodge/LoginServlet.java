@@ -5,7 +5,7 @@
  * Adapted from: Beginning Jakarta EE Web Development, Third Edition - 2020 - Authors: Luciano Manelli, Giulio Zambon
  *      Accessed 9/2/2023
  * 
- * TODO: Setup class to handle messages?
+ * TODO: Setup class/tags to handle messages?
  * TODO: Login: Use JavaScript for form validations?
  */
 package lodge;
