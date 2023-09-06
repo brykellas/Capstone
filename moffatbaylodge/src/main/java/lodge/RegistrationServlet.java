@@ -1,10 +1,11 @@
 /* Team Delta
- * Authors: Bryce Kellas
+ * Authors: Bryce Kellas, Jared Olson
  * 
  * Servlet controller to handle registration requests and validations.
  * Adapted from: Beginning Jakarta EE Web Development, Third Edition - 2020 - Authors: Luciano Manelli, Giulio Zambon
  *      Accessed 9/2/2023
  * 
+ * TODO: Register: Use JavaScript for form validations?
  */
 package lodge;
 
@@ -20,7 +21,6 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lodge.beans.Customer;
 import lodge.models.DataManager;
 
@@ -47,33 +47,25 @@ public class RegistrationServlet extends jakarta.servlet.http.HttpServlet {
 
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
+        // Set dataManager and pasword hasher
         DataManager dm = (DataManager)getServletContext().getAttribute("dataManager");
         HashPassword hp = new HashPassword();
 
+        // Store DB customer info in Customer bean
         Customer customer = new Customer(); 
         customer.setFirstName(request.getParameter("firstname"));
         customer.setLastName(request.getParameter("lastname"));
         customer.setEmail(request.getParameter("email"));
         customer.setPhoneNumber(request.getParameter("phone"));
 
-        try {
-            customer.setPassword(hp.generateStrongPasswordHash(request.getParameter("psw")));
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidKeySpecException e) {
-            System.out.println(e.getMessage());
-        } catch (NoSuchProviderException e) {
-            System.out.println(e.getMessage());
-        }
-
-        // TODO: Create class for registration validations?
+        // Password and Email validations
         boolean isPasswordLengthValid = request.getParameter("psw").length() >= 8;
         boolean emailIsValid = request.getParameter("email").matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
             + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
         boolean isCaseValid = StringUtils.isMixedCase(request.getParameter("psw"));
         
+        // Valid entries, meets requirements
         if (isCaseValid && emailIsValid && isPasswordLengthValid) {
             dm.insertCustomer(customer);
             request.setAttribute("registerwelcome","Welcome: Please sign in");
@@ -98,6 +90,17 @@ public class RegistrationServlet extends jakarta.servlet.http.HttpServlet {
             RequestDispatcher rd=request.getRequestDispatcher("?action=register");            
             rd.include(request, response);
         } 
+
+        // Hash 
+        try {
+            customer.setPassword(hp.generateStrongPasswordHash(request.getParameter("psw")));
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e.getMessage());
+        } catch (InvalidKeySpecException e) {
+            System.out.println(e.getMessage());
+        } catch (NoSuchProviderException e) {
+            System.out.println(e.getMessage());
+        }
         
     }
 

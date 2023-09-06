@@ -29,7 +29,6 @@
 
                 <form method="POST" action="register">
                 <% // Display error message if email/password is invalid
-                // TODO: Setup class to handle messages?
                 String emailInvlaid = (String)request.getAttribute("emailerror");
                 String lengthInvalid = (String)request.getAttribute("passwordlengtherror");
                 String caseInvalid = (String)request.getAttribute("passwordcaseerror");

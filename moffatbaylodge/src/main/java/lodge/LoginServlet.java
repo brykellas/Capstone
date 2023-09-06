@@ -1,12 +1,12 @@
 /* Team Delta
- * Authors: Bryce Kellas
+ * Authors: Bryce Kellas, Jared Olson
  * 
- * Servlet controller to handle login requests
+ * Servlet controller to handle login requests and validations
  * Adapted from: Beginning Jakarta EE Web Development, Third Edition - 2020 - Authors: Luciano Manelli, Giulio Zambon
  *      Accessed 9/2/2023
  * 
- * TODO: Validate password using HashPassword
- * TODO: Update doPost method
+ * TODO: Setup class to handle messages?
+ * TODO: Login: Use JavaScript for form validations?
  */
 package lodge;
 
@@ -50,15 +50,17 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         
+        // Pull username and password from the request
         String email = request.getParameter("username"); 
         String password = request.getParameter("password");
 
+        // Set DataManager and customer bean
         DataManager dm = (DataManager)getServletContext().getAttribute("dataManager");
-        System.out.println("DB Info: " + dm.getDbPassword() +"|"+dm.getDbURL()+"|"+dm.getDbUserName()); 
         Customer customer = dm.getCustomerLogin(email);
         HashPassword hp = new HashPassword();
         boolean validPassword = false;
 
+        // Email and Password Validations
         try {
             validPassword = hp.validatePassword(password, customer.getPassword());
         } catch (NoSuchAlgorithmException e) {
@@ -71,9 +73,7 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
             session.setAttribute("userid", customer.getId());
             session.setAttribute("username", customer.getEmail());
             session.setAttribute("uname", customer.getFirstName());
-
-            System.out.println("session:" + session.getAttributeNames() + "|" + session.getAttribute("username"));
-            System.out.println(getServletContext().getAttribute("base")+"?action=home");
+            
             // Navigate to home page
             RequestDispatcher req = request.getRequestDispatcher("?action=home");
             req.forward(request, response);
@@ -85,7 +85,6 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
             // Post back to login page
             RequestDispatcher rd=request.getRequestDispatcher("?action=login");            
             rd.include(request, response);
-            //request.setAttribute("redo", "yes");
         }
     }
 }
